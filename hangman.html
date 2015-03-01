@@ -217,10 +217,16 @@
 
 		function check_letter() {
 			letter.toLowerCase();
-			return chosen_word.includes(letter);
+			var pos = [];
+			var i;
+			for (i = 0; i < chosen_word.length; i++) {
+				if (chosen_word.charAt(i) == letter) {
+					pos.push(i)
+				}
+			}
+			return pos;
 		}
 
->>>>>>> origin/master
 		// function getFortune() {
 		// 	changeImg();
 		// }
