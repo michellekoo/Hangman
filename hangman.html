@@ -40,6 +40,12 @@
 			font-weight: 10em;
 		}
 
+		h3 {
+			padding-top:10px;
+			color: black;
+			text-align: center;
+		}
+
 		#new-button {
 			border: 2px solid #78c272;
 			color: #78c272;
@@ -85,8 +91,14 @@
 			margin: 0 auto;
 			font-size: 20px;
 		}
+
+		#usedletters {
+			text-align: left;
+			width: 200px;
+			background-color: #b8e7a7;
+		}
 		
-		#page-wrap { position: relative; width: 600px; height: 670px; margin: 50px auto; padding: 20px; background: #b0e2ff; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
+		#page-wrap { position: relative; width: 800px; height: 750px; margin: 50px auto; padding: 20px; background: #b0e2ff; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
 		p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
 	</style>
 
@@ -241,6 +253,12 @@
 	<img src="images/water.jpg" class="bg">
 	
 	<div id="page-wrap"> <h1>Hangman</h1>
+		<div id="usedletters">
+			<h3> Incorrect Guesses </h3>
+			<br>
+			<br>
+			<br>
+		</div>
 		<IMG class="displayed" src="images/hangman1.png" id="hangman1">
 		<br>
 		<br>
