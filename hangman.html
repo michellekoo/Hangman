@@ -205,21 +205,32 @@
 			var text = div.textContent;
 			//return (hangman_words[i]);
 		}
-<<<<<<< HEAD
+
 		function check_input() {
+    		if (letter == null || letter == "") {
+        		alert("Name must be filled out");
+        		return false;
+    		}
+    		var objRegExp  = /^[a-z]|[A-Z]+$/;
+  			var bool = objRegExp.test(letter);
+    		if (bool == false) {
+				alert("Must enter a letter");
+				return false;			
+
+    		}
 		}
 		// need to check if the input they entered is valid or not
-=======
+
 
 		function check_letter() {
 
 		}	
 		function start() {
 			letter = document.getElementById("myText").value;
+			check_input();
 			
 		}
 
->>>>>>> origin/master
 		// function getFortune() {
 		// 	changeImg();
 		// }
