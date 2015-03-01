@@ -205,13 +205,15 @@
 			var text = div.textContent;
 			//return (hangman_words[i]);
 		}
-
-		function check_letter() {
-
-		}	
+	
 		function start() {
 			letter = document.getElementById("myText").value;
 			
+		}
+
+		function check_letter() {
+			letter.toLowerCase();
+			return chosen_word.includes(letter);
 		}
 
 		// function getFortune() {
