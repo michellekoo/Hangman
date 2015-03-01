@@ -107,13 +107,6 @@
 		var chosen_word = "";
 		var letter = "";
 
-		// function changeImg() {
-		// 	document.getElementById("imgClosed").src = fortune();
-		// }
-
-		// function changeImgBack() {
-		// 	document.getElementById("imgClosed").src = "images/close.gif";
-		// }
 		function words() {
 			hangman_words[0] = "acres";
 			hangman_words[1] = "adult";
@@ -215,7 +208,6 @@
 			}
 			div.textContent = blanks;
 			var text = div.textContent;
-			//return (hangman_words[i]);
 		}
 
 		function check_input() {
@@ -231,18 +223,6 @@
 			letter.toLowerCase();
 			return chosen_word.includes(letter);
 		}
-
-		// function getFortune() {
-		// 	changeImg();
-		// }
-
-		// function createButton() {
-		// 	var button = document.createElement("input");
-		// 	button.type = "new-button";
-		// 	button.value = "Start Again";
-		// 	button.onclick = changeImgBack();
-		// 	context.appendChild(button);
-		// }
 
 	</script>
 </head>
@@ -269,12 +249,6 @@
 		<br>
 		<div class="new-action-button" id="new-button" onclick="start()">Play</div>
 
-
-		<!-- <img src="images/hangman1.jpg" id="hangman1" /> -->
-	
-	<!-- <h2> Click on the fortune cookie to open it and discover your fortune! </h2> -->
-	<!-- <img src="images/close.gif" id="imgClosed" onclick="getFortune()"/>
-	<div class="new-action-button" id="new-button" onclick="changeImgBack()">Start Again</div> -->
 	</div>
 	
 </body>
