@@ -151,11 +151,19 @@
 			hangman_words[60] = "research";
 			hangman_words[61] = "respond";
 			hangman_words[62] = "restructure";
+			
+			var i = Math.floor(23 * Math.random());
+			var str = hangman_words[i];
+			var len = str.length;
+			var div = document.getElementById("textDiv");
+			var blanks = "";
+			for (i = 0; i < len; i++) { 
+			    blanks = blanks.concat("___ ");
+			}
+			div.textContent = blanks;
+			var text = div.textContent;
+			//return (hangman_words[i]);
 		}
-
-		// 	var i = Math.floor(60 * Math.random());
-		// 	return (fortune_text[i]);
-		// }
 
 		// function getFortune() {
 		// 	changeImg();
@@ -177,7 +185,9 @@
 	<img src="images/water.jpg" class="bg">
 	
 	<div id="page-wrap"> <h1>Hangman</h1>
-		<IMG class="displayed" src="images/hangman1.png" id="hangman1">
+		<IMG class="displayed" src="images/hangman1.png" id="hangman1" onclick="words()">
+		<div id="textDiv"></div>
+
 		<!-- <img src="images/hangman1.jpg" id="hangman1" /> -->
 	
 	<!-- <h2> Click on the fortune cookie to open it and discover your fortune! </h2> -->
