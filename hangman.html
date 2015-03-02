@@ -117,6 +117,7 @@
 		var chosen_word_len = 0;
 		var incorrect_str = "";
 		var incorrect_count = 0;
+		var guess = "";
 
 		function words() {
 			hangman_words[0] = "acres";
@@ -209,8 +210,8 @@
 			hangman_words[86] = "lynx";
 
 			var i = Math.floor(87 * Math.random());
-			var chosen_word = hangman_words[i];
-			var chosen_word_len = chosen_word.length;
+			chosen_word = hangman_words[i];
+			chosen_word_len = chosen_word.length;
 
 			var div = document.getElementById("textDiv");
 			var blanks = "";
@@ -239,7 +240,7 @@
 			letter = document.getElementById("myText").value;
 			if (check_input()) {
 			 	var indices = check_letter();
-			 	if (indices) {
+			 	if (indices.length > 0) {
 			 		correct_letter(indices);
 			 	} else {
 			 		incorrect_letter();
@@ -248,19 +249,18 @@
 			
 		}
 		function check_letter() {
-			letter.toLowerCase();
-			var pos = [];
+			letter = letter.toLowerCase();
+			var pos = new Array();
 			var i;
-			for (i = 0; i < chosen_word.length; i++) {
+			for (i = 0; i < chosen_word_len; i++) {
 				if (chosen_word.charAt(i) == letter) {
-					pos.push(i)
+					pos.push(i);
 				}
 			}
 			return pos;
 		}
 
 		function correct_letter(indices) {
-			var guess = "";
 			var num_indices = indices.length;
 			var count = 0;
 			for (i = 0; i < chosen_word_len; i++) {
@@ -269,12 +269,12 @@
 					guess = guess.concat(" ");
 					count += 1;
 				} else {
-					guess = guess.concat("___ ")
+					guess = guess.concat("___ ");
 				}
 			}
 			var div = document.getElementById("textDiv");
 			div.textContent = guess;
-			var text2 = div.textContent;
+			var text = div.textContent;
 
 		}
 
