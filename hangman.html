@@ -107,6 +107,7 @@
 		var hangman_words = new Array();
 		var chosen_word = "";
 		var letter = "";
+		var chosen_word_len = 0;
 
 		function words() {
 			hangman_words[0] = "acres";
@@ -199,12 +200,11 @@
 			hangman_words[86] = "lynx";
 
 			var i = Math.floor(86 * Math.random());
-			var str = hangman_words[i];
-			var chosen_word = str;
-			var len = str.length;
+			var chosen_word = hangman_words[i];
+			var chosen_word_len = chosen_word.length;
 			var div = document.getElementById("textDiv");
 			var blanks = "";
-			for (i = 0; i < len; i++) { 
+			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("___ ");
 			}
 			div.textContent = blanks;
@@ -223,6 +223,7 @@
 				return false;			
 
     		}
+    		return true;
 		}
 		function start() {
 			letter = document.getElementById("myText").value;
