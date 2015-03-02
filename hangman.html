@@ -257,7 +257,7 @@
 			var i;
 			for (i = 0; i < chosen_word_len; i++) {
 				if (chosen_word.charAt(i) == letter.charAt(0)) {
-					pos.push(i);
+					pos.push(2 * i);
 				}
 			}
 			return pos;
@@ -270,16 +270,20 @@
 			var num_indices = indices.length;
 			var guess = "";
 			for (i = 0; i < blanks.length; i++) {
-				if (indices.indexOf(i) != -1) {
+				if (indices.indexOf(i) != -1) { //if i is in indices
 					guess = guess.concat(letter);
+					continue;
 					//guess = guess.concat(" ");
 				} else if ((blanks.charAt(i) != " ") && (blanks.charAt(i) != "_")) {
 					guess = guess.concat(blanks.charAt(i));
+					continue;
 					//guess = guess.concat(" ");
 				} else if (blanks.charAt(i) == "_") {
 					guess = guess.concat("_");
+					continue;
 				} else if (blanks.charAt(i) == " ") {
 					guess = guess.concat(" ");
+					continue;
 				}
 			}
 			blanks = guess;
