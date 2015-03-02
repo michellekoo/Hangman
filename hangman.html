@@ -97,7 +97,7 @@
 			background-color: #fff;
 		}
 		
-		#page-wrap { position: relative; width: 800px; height: 750px; margin: 50px auto; padding: 20px; background: #b0e2ff; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
+		#page-wrap { position: relative; width: 800px; height: 800px; margin: 50px auto; padding: 20px; background: #b0e2ff; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
 		p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
 	</style>
 
@@ -110,6 +110,18 @@
 		var incorrect_count = 0;
 		var blanks = "";
 		function words() {
+			blanks = "";
+			document.getElementById("hangman1").src = "images/hangman1.png";
+			hangman_words = new Array();
+			chosen_word = "";
+			letter = "";
+			chosen_word_len = 0;
+			incorrect_str = "";
+			incorrect_count = 0;
+			var div2 = document.getElementById("innerdiv");
+			div2.textContent = "";
+			var text = div2.textContent;
+
 			hangman_words[0] = "acres";
 			hangman_words[1] = "adult";
 			hangman_words[2] = "advice";
@@ -328,6 +340,8 @@
 		<br>
 		<br>
 		<div class="new-action-button" id="new-button" onclick="start()">Play</div>
+		<br>
+		<div class="new-action-button" id="new-button" onclick="words()">Start Over</div>
 
 	</div>
 	
