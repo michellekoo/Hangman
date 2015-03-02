@@ -217,8 +217,6 @@
 			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("_ ");
 			}
-			//go through the current string, and 
-			// if there is correct_letter, then
 			div.textContent = blanks;
 			var text = div.textContent;
 		}
@@ -270,28 +268,26 @@
 			div.textContent = "";
 			var text = div.textContent;
 			var num_indices = indices.length;
-			var count = 0;
 			var guess = "";
-			for (i = 0; i < blanks.length; i+=2) {
-				if ((count <= num_indices) && (i == indices[count])) {//going count [1]
+
+			for (i = 0; i < blanks.length; i++) {
+				if (indices.indexOf(i) != -1) {
 					guess = guess.concat(letter);
-					guess = guess.concat(" ");
-					count += 1;
-					continue;
-				} else if ((blanks.charAt(i) != ' ') && (blanks.charAt(i) != "_")) {
+					//guess = guess.concat(" ");
+				} else if ((blanks.charAt(i) != " ") && (blanks.charAt(i) != "_")) {
 					guess = guess.concat(blanks.charAt(i));
+					//guess = guess.concat(" ");
+				} else if (blanks.charAt(i) == "_") {
+					guess = guess.concat("_");
+				} else if (blanks.charAt(i) == " ") {
 					guess = guess.concat(" ");
 					continue;
-				}
-				else if (blanks.charAt(i) == ' ') {
-					guess = guess.concat("_ ");
 				}
 			}
 			blanks = guess;
 			var div = document.getElementById("textDiv");
 			div.textContent = blanks;
 			var text = div.textContent;
-
 		}
 
 		function incorrect_letter() {
