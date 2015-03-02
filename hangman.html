@@ -117,7 +117,7 @@
 		var chosen_word_len = 0;
 		var incorrect_str = "";
 		var incorrect_count = 0;
-		var guess = "";
+		var blanks = "";
 
 		function words() {
 			hangman_words[0] = "acres";
@@ -214,17 +214,16 @@
 			chosen_word_len = chosen_word.length;
 
 			var div = document.getElementById("textDiv");
-			guess = "";
 			for (i = 0; i < chosen_word_len; i++) { 
-			    guess = guess.concat("___ ");
+			    blanks = blanks.concat("_ ");
 			}
-			div.textContent = guess;
+			div.textContent = blanks;
 			var text = div.textContent;
 		}
 
 		function check_input() {
     		if (letter == null || letter == "") {
-        		alert("Name must be filled out");
+        		alert("Please enter a letter");
         		return false;
     		}
     		var objRegExp  = /^[a-z]|[A-Z]+$/;
@@ -243,6 +242,7 @@
 			 	if (indices.length > 0) {
 			 		correct_letter(indices);
 			 	} else {
+			 		alert("calls incorrect_letter");
 			 		incorrect_letter();
 			 	}
 			 } 
@@ -266,17 +266,23 @@
 			var text = div.textContent;
 			var num_indices = indices.length;
 			var count = 0;
-			for (i = 0; i < chosen_word_len; i++) {
+			var guess = "";
+			for (i = 0; i < blanks.length; i++) {
 				if ((count <= num_indices) && (i == indices[count])) {
 					guess = guess.concat(letter);
 					guess = guess.concat(" ");
 					count += 1;
-				} else {
-					guess = guess.concat("___ ");
+				} else if ((blanks.charAt(i) != ' ') || (blanks.charAt(i) != "_")) {
+					guess = guess.concat(blanks.charAt(i));
+					guess = guess.concat(" ");
+				}
+				else {
+					guess = guess.concat("_ ");
 				}
 			}
+			blanks = guess;
 			var div = document.getElementById("textDiv");
-			div.textContent = guess;
+			div.textContent = blanks;
 			var text = div.textContent;
 
 		}
