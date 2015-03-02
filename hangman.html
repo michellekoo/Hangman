@@ -284,6 +284,10 @@
 				div.textContent = incorrect_str;
 				var text = div.textContent;
 				incorrect_count += 1;
+				if (incorrect_count === 6) {
+					alert("Game over.");
+				}
+				change_image();
 			} else {
 				alert("You already guessed this letter.");
 			}
@@ -298,6 +302,8 @@
 			incorrect_img[3] = "images/hangman4.png";
 			incorrect_img[4] = "images/hangman5.png";
 			incorrect_img[5] = "images/hangman.png";
+
+			document.getElementById("hangman1").src = incorrect_img[incorrect_count - 1];
 		}
 
 	</script>
