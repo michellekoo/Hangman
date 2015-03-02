@@ -227,7 +227,14 @@
 		}
 		function start() {
 			letter = document.getElementById("myText").value;
-			check_input();
+			 if (check_input()) {
+			 	var indices = check_letter();
+			 	if (indices) {
+			 		correct_letter(indices);
+			 	} else {
+			 		incorrect_letter();
+			 	}
+			 } 
 			
 		}
 		function check_letter() {
@@ -241,6 +248,15 @@
 			}
 			return pos;
 		}
+
+		function correct_letter(indices) {
+
+		}
+
+		function incorrect_letter() {
+			
+		}
+
 
 	</script>
 </head>
