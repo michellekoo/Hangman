@@ -209,12 +209,12 @@
 			hangman_words[86] = "lynx";
 
 			var i = Math.floor(87 * Math.random());
-			var chosen_word = hangman_words[i];
-			var chosen_word_len = chosen_word.length;
+			chosen_word = hangman_words[i];
+			chosen_word_len = chosen_word.length;
 
 			var div = document.getElementById("textDiv");
 			var blanks = "";
-			for (i = 0; i < len; i++) { 
+			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("___ ");
 			}
 			div.textContent = blanks;
@@ -237,10 +237,9 @@
 		}
 		function start() {
 			letter = document.getElementById("myText").value;
-			//incorrect_letter();
 			if (check_input()) {
 			 	var indices = check_letter();
-			 	if (indices) {
+			 	if (indices.length > 0) {
 			 		correct_letter(indices);
 			 	} else {
 			 		incorrect_letter();
@@ -249,12 +248,12 @@
 			
 		}
 		function check_letter() {
-			letter.toLowerCase();
+			letter = letter.toLowerCase();
 			var pos = [];
 			var i;
-			for (i = 0; i < chosen_word.length; i++) {
-				if (chosen_word.charAt(i) == letter) {
-					pos.push(i)
+			for (i = 0; i < chosen_word_len; i++) {
+				if (chosen_word.charAt(i) == letter.charAt(0)) {
+					pos.push(i);
 				}
 			}
 			return pos;
@@ -270,7 +269,7 @@
 					guess = guess.concat(" ");
 					count += 1;
 				} else {
-					guess = guess.concat("___ ")
+					guess = guess.concat("___ ");
 				}
 			}
 
