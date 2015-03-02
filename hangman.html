@@ -261,6 +261,9 @@
 		}
 
 		function correct_letter(indices) {
+			var div = document.getElementById("textDiv");
+			div.textContent = "";
+			var text = div.textContent;
 			var num_indices = indices.length;
 			var count = 0;
 			for (i = 0; i < chosen_word_len; i++) {
