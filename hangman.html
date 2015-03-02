@@ -213,11 +213,13 @@
 			chosen_word = hangman_words[i];
 			chosen_word_len = chosen_word.length;
 
-			var div = document.getElementById("textDiv");
+			var div = document.getElementById("textDiv"); //
 			var blanks = "";
 			for (i = 0; i < chosen_word_len; i++) { 
-			    blanks = blanks.concat("___ ");
+			    blanks = blanks.concat("_ ");
 			}
+			//go through the current string, and 
+			// if there is correct_letter, then
 			div.textContent = blanks;
 			var text = div.textContent;
 		}
