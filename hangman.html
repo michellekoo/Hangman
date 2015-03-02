@@ -22,7 +22,6 @@
 			top: 0;
 			left: 0;
 		}
-
 		h1 {
 			color: #2cae89;
 			font-weight: bold;
@@ -31,7 +30,6 @@
 			font-family: sans-serif;
 			text-shadow: white 0.1em 0.1em 0.2em
 		}
-
 		h2 {
 			color: black;
 			font-size: 20px;
@@ -39,13 +37,11 @@
 			font-family: sans-serif;
 			font-weight: 10em;
 		}
-
 		h3 {
 			padding-top:10px;
 			color: black;
 			text-align: center;
 		}
-
 		#new-button {
 			border: 2px solid #78c272;
 			color: #78c272;
@@ -72,33 +68,28 @@
 				left: 50%;
 				margin-left: -512px; }
 		}
-
 		IMG.displayed {
 		    display: block;
 		    margin-left: auto;
 		    margin-right: auto; }
-
 		#textDiv {
 			text-align: center;
 			width: 500;
 			margin: 0 auto;
 			font-size: 30px;
 		}
-
 		#textbox {
 			text-align: center;
 			width: 500;
 			margin: 0 auto;
 			font-size: 20px;
 		}
-
 		#usedletters {
 			text-align: left;
 			width: 200px;
 			height: 100px;
 			background-color: #b8e7a7;
 		}
-
 		#innerdiv {
 			text-align: center;
 			width: 200px;
@@ -118,7 +109,6 @@
 		var incorrect_str = "";
 		var incorrect_count = 0;
 		var blanks = "";
-
 		function words() {
 			hangman_words[0] = "acres";
 			hangman_words[1] = "adult";
@@ -208,11 +198,9 @@
 			hangman_words[84] = "zebra";
 			hangman_words[85] = "zipper";
 			hangman_words[86] = "lynx";
-
 			var i = Math.floor(87 * Math.random());
 			chosen_word = hangman_words[i];
 			chosen_word_len = chosen_word.length;
-
 			var div = document.getElementById("textDiv");
 			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("_ ");
@@ -220,7 +208,6 @@
 			div.textContent = blanks;
 			var text = div.textContent;
 		}
-
 		function check_input() {
 			if (letter.length != 1) {
 				alert("Please enter a letter");
@@ -235,7 +222,6 @@
     		if (bool == false) {
 				alert("Must enter a letter");
 				return false;			
-
     		}
     		return true;
 		}
@@ -257,28 +243,29 @@
 			var i;
 			for (i = 0; i < chosen_word_len; i++) {
 				if (chosen_word.charAt(i) == letter.charAt(0)) {
-					pos.push(i);
+					pos.push(2 * i);
 				}
 			}
 			return pos;
 		}
-
 		function correct_letter(indices) {
 			var div = document.getElementById("textDiv");
 			div.textContent = "";
 			var text = div.textContent;
 			var num_indices = indices.length;
 			var guess = "";
-
+			var blank_count = 0;
 			for (i = 0; i < blanks.length; i++) {
 				if (indices.indexOf(i) != -1) {
 					guess = guess.concat(letter);
-					//guess = guess.concat(" ");
+					continue;
 				} else if ((blanks.charAt(i) != " ") && (blanks.charAt(i) != "_")) {
 					guess = guess.concat(blanks.charAt(i));
-					//guess = guess.concat(" ");
+					continue;
 				} else if (blanks.charAt(i) == "_") {
 					guess = guess.concat("_");
+					blank_count++;
+					continue;
 				} else if (blanks.charAt(i) == " ") {
 					guess = guess.concat(" ");
 					continue;
@@ -288,8 +275,10 @@
 			var div = document.getElementById("textDiv");
 			div.textContent = blanks;
 			var text = div.textContent;
+			if (blank_count == 0) {
+				alert("You won!");
+			}
 		}
-
 		function incorrect_letter() {
 			if (incorrect_str.indexOf(letter) === -1) {
 				incorrect_str = incorrect_str.concat(letter);
@@ -299,7 +288,7 @@
 				var text = div2.textContent;
 				incorrect_count += 1;
 				if (incorrect_count === 6) {
-					alert("Game over.");
+					alert("Game over. The word was: " + chosen_word);
 				}
 				change_image();
 			} else {
@@ -307,7 +296,6 @@
 			}
 			
 		}
-
 		function change_image() {
 			var incorrect_img = new Array();
 			incorrect_img[0] = "images/hangman2.png";
@@ -316,10 +304,8 @@
 			incorrect_img[3] = "images/hangman4.png";
 			incorrect_img[4] = "images/hangman5.png";
 			incorrect_img[5] = "images/hangman.png";
-
 			document.getElementById("hangman1").src = incorrect_img[incorrect_count - 1];
 		}
-
 	</script>
 </head>
 
