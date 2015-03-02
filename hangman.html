@@ -212,18 +212,20 @@
 			var i = Math.floor(87 * Math.random());
 			chosen_word = hangman_words[i];
 			chosen_word_len = chosen_word.length;
-			alert(chosen_word);
+
 			var div = document.getElementById("textDiv");
 			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("_ ");
 			}
-			//go through the current string, and 
-			// if there is correct_letter, then
 			div.textContent = blanks;
 			var text = div.textContent;
 		}
 
 		function check_input() {
+			if (letter.length != 1) {
+				alert("Please enter a letter");
+				return false;
+			}
     		if (letter == null || letter == "") {
         		alert("Please enter a letter");
         		return false;
@@ -241,7 +243,6 @@
 			letter = document.getElementById("myText").value;
 			if (check_input()) {
 			 	var indices = check_letter();
-			 	alert(indices.toSting());
 			 	if (indices.length > 0) {
 			 		correct_letter(indices);
 			 	} else {
@@ -286,6 +287,7 @@
 			var div = document.getElementById("textDiv");
 			div.textContent = blanks;
 			var text = div.textContent;
+
 		}
 
 		function incorrect_letter() {
