@@ -98,6 +98,13 @@
 			height: 100px;
 			background-color: #b8e7a7;
 		}
+
+		#innerdiv {
+			text-align: center;
+			width: 200px;
+			height: 80px;
+			background-color: #fff;
+		}
 		
 		#page-wrap { position: relative; width: 800px; height: 750px; margin: 50px auto; padding: 20px; background: #b0e2ff; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
 		p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
@@ -107,6 +114,9 @@
 		var hangman_words = new Array();
 		var chosen_word = "";
 		var letter = "";
+		var chosen_word_len = 0;
+		var incorrect_str = "";
+		var incorrect_count = 0;
 
 		function words() {
 			hangman_words[0] = "acres";
@@ -198,7 +208,6 @@
 			hangman_words[85] = "zipper";
 			hangman_words[86] = "lynx";
 
-
 			var i = Math.floor(87 * Math.random());
 			var chosen_word = hangman_words[i];
 			var chosen_word_len = chosen_word.length;
@@ -228,7 +237,15 @@
 		}
 		function start() {
 			letter = document.getElementById("myText").value;
-			check_input();
+			//incorrect_letter();
+			if (check_input()) {
+			 	var indices = check_letter();
+			 	if (indices) {
+			 		correct_letter(indices);
+			 	} else {
+			 		incorrect_letter();
+			 	}
+			 } 
 			
 		}
 		function check_letter() {
@@ -243,6 +260,46 @@
 			return pos;
 		}
 
+		function correct_letter(indices) {
+			var guess = "";
+			var num_indices = indices.length;
+			var count = 0;
+			for (i = 0; i < chosen_word_len; i++) {
+				if ((count <= num_indices) && (i == indices[count])) {
+					guess = guess.concat(letter);
+					guess = guess.concat(" ");
+					count += 1;
+				} else {
+					guess = guess.concat("___ ")
+				}
+			}
+
+		}
+
+		function incorrect_letter() {
+			if (incorrect_str.indexOf(letter) === -1) {
+				incorrect_str = incorrect_str.concat(letter);
+				incorrect_str = incorrect_str.concat(", ");
+				var div = document.getElementById("innerdiv");
+				div.textContent = incorrect_str;
+				var text = div.textContent;
+				incorrect_count += 1;
+			} else {
+				alert("You already guessed this letter.");
+			}
+			
+		}
+
+		function change_image() {
+			var incorrect_img = new Array();
+			incorrect_img[0] = "images/hangman2.png";
+			incorrect_img[1] = "images/hangman2_5.png";
+			incorrect_img[2] = "images/hangman3.png";
+			incorrect_img[3] = "images/hangman4.png";
+			incorrect_img[4] = "images/hangman5.png";
+			incorrect_img[5] = "images/hangman.png";
+		}
+
 	</script>
 </head>
 
@@ -253,6 +310,7 @@
 	<div id="page-wrap"> <h1>Hangman</h1>
 		<div id="usedletters">
 			<h3> Incorrect Guesses </h3>
+			<div id="innerdiv"></div>
 		</div>
 		<IMG class="displayed" src="images/hangman1.png" id="hangman1">
 		<br>
