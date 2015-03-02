@@ -117,7 +117,7 @@
 		var chosen_word_len = 0;
 		var incorrect_str = "";
 		var incorrect_count = 0;
-		var guess = "";
+		var blanks = "";
 
 		function words() {
 			hangman_words[0] = "acres";
@@ -213,8 +213,7 @@
 			chosen_word = hangman_words[i];
 			chosen_word_len = chosen_word.length;
 
-			var div = document.getElementById("textDiv"); //
-			var blanks = "";
+			var div = document.getElementById("textDiv");
 			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("_ ");
 			}
@@ -269,17 +268,23 @@
 			var text = div.textContent;
 			var num_indices = indices.length;
 			var count = 0;
-			for (i = 0; i < chosen_word_len; i++) {
+			var guess = "";
+			for (i = 0; i < blanks.length; i++) {
 				if ((count <= num_indices) && (i == indices[count])) {
 					guess = guess.concat(letter);
 					guess = guess.concat(" ");
 					count += 1;
-				} else {
-					guess = guess.concat("___ ");
+				} else if ((blanks.charAt(i) != ' ') || (blanks.charAt(i) != "_")) {
+					guess = guess.concat(blanks.charAt(i));
+					guess = guess.concat(" ");
+				}
+				else {
+					guess = guess.concat("_ ");
 				}
 			}
+			blanks = guess;
 			var div = document.getElementById("textDiv");
-			div.textContent = guess;
+			div.textContent = blanks;
 			var text = div.textContent;
 
 		}
