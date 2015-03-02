@@ -214,7 +214,7 @@
 
 			var div = document.getElementById("textDiv");
 			var blanks = "";
-			for (i = 0; i < len; i++) { 
+			for (i = 0; i < chosen_word_len; i++) { 
 			    blanks = blanks.concat("___ ");
 			}
 			div.textContent = blanks;
@@ -237,7 +237,6 @@
 		}
 		function start() {
 			letter = document.getElementById("myText").value;
-			//incorrect_letter();
 			if (check_input()) {
 			 	var indices = check_letter();
 			 	if (indices) {
@@ -273,6 +272,9 @@
 					guess = guess.concat("___ ")
 				}
 			}
+			var div = document.getElementById("textDiv");
+			div.textContent = guess;
+			var text2 = div.textContent;
 
 		}
 
@@ -280,9 +282,9 @@
 			if (incorrect_str.indexOf(letter) === -1) {
 				incorrect_str = incorrect_str.concat(letter);
 				incorrect_str = incorrect_str.concat(", ");
-				var div = document.getElementById("innerdiv");
-				div.textContent = incorrect_str;
-				var text = div.textContent;
+				var div2 = document.getElementById("innerdiv");
+				div2.textContent = incorrect_str;
+				var text = div2.textContent;
 				incorrect_count += 1;
 				if (incorrect_count === 6) {
 					alert("Game over.");
